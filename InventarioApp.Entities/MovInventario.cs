@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace InventarioApp.Entities
 {
-    public class MovInventario
+    public class MovInventario : IValidatableObject
     {
         public string CodCia { get; set; }
         public string CompaniaVenta3 { get; set; }
@@ -24,5 +23,33 @@ namespace InventarioApp.Entities
         public string DocRef4 { get; set; }
         public string DocRef5 { get; set; }
         public DateTime? FechaTransaccion { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var camposRequeridos = new List<string>
+            {
+                nameof(CodCia),
+                nameof(CompaniaVenta3),
+                nameof(AlmacenVenta),
+                nameof(TipoMovimiento),
+                nameof(TipoDocumento),
+                nameof(NroDocumento),
+                nameof(CodItem2)
+            };
+
+            foreach (var campo in camposRequeridos)
+            {
+                PropertyInfo propiedad = GetType().GetProperty(campo);
+                object valor = propiedad?.GetValue(this);
+
+                if (valor == null || (valor is string str && string.IsNullOrWhiteSpace(str)))
+                {
+                    yield return new ValidationResult(
+                        $"El campo {campo} es obligatorio.",
+                        new[] { campo }
+                    );
+                }
+            }
+        }
     }
 }
