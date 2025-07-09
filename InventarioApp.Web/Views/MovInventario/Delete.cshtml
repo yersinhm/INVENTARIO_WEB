@@ -1,0 +1,74 @@
+﻿@model InventarioApp.Entities.MovInventario
+
+@{
+    ViewBag.Title = "Eliminar Inventario";
+}
+
+<h2 class="mb-4">¿Estás seguro de que deseas eliminar este registro?</h2>
+
+<div class="card">
+    <div class="card-header bg-danger text-white">
+        Detalle del Movimiento de Inventario
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CodCia)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CodCia)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CompaniaVenta3)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CompaniaVenta3)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.AlmacenVenta)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.AlmacenVenta)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TipoMovimiento)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoMovimiento)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TipoDocumento)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoDocumento)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.NroDocumento)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.NroDocumento)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.CodItem2)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CodItem2)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Proveedor)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Proveedor)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.AlmacenDestino)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.AlmacenDestino)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Cantidad)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cantidad)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DocRef1)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DocRef1)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DocRef2)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DocRef2)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DocRef3)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DocRef3)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DocRef4)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DocRef4)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DocRef5)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DocRef5)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.FechaTransaccion)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FechaTransaccion)</dd>
+        </dl>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="mt-4 d-flex gap-2">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+}

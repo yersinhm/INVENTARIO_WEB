@@ -1,0 +1,116 @@
+﻿@model IEnumerable<InventarioApp.Entities.MovInventario>
+
+@{
+    ViewBag.Title = "Inventario";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Movimientos de Inventario</h2>
+
+    @using (Html.BeginForm("Index", "MovInventario", FormMethod.Get))
+    {
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <label class="form-label">Fecha Inicio</label>
+                @Html.TextBox("FechaInicio", Request.QueryString["FechaInicio"], new { @class = "form-control", type = "date" })
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Fecha Fin</label>
+                @Html.TextBox("FechaFin", Request.QueryString["FechaFin"], new { @class = "form-control", type = "date" })
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tipo de Movimiento</label>
+                @Html.TextBox("TipoMovimiento", Request.QueryString["TipoMovimiento"], new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Nro. Documento</label>
+                @Html.TextBox("NroDocumento", Request.QueryString["NroDocumento"], new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="@Url.Action("Index", "MovInventario")" class="btn btn-secondary">Limpiar</a>
+            </div>
+        </div>
+    }
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-success">Crear nuevo</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.CodCia)</th>
+                    <th>@Html.DisplayNameFor(m => m.CompaniaVenta3)</th>
+                    <th>@Html.DisplayNameFor(m => m.AlmacenVenta)</th>
+                    <th>@Html.DisplayNameFor(m => m.TipoMovimiento)</th>
+                    <th>@Html.DisplayNameFor(m => m.TipoDocumento)</th>
+                    <th>@Html.DisplayNameFor(m => m.NroDocumento)</th>
+                    <th>@Html.DisplayNameFor(m => m.CodItem2)</th>
+                    <th>@Html.DisplayNameFor(m => m.Proveedor)</th>
+                    <th>@Html.DisplayNameFor(m => m.AlmacenDestino)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cantidad)</th>
+                    <th>@Html.DisplayNameFor(m => m.DocRef1)</th>
+                    <th>@Html.DisplayNameFor(m => m.DocRef2)</th>
+                    <th>@Html.DisplayNameFor(m => m.DocRef3)</th>
+                    <th>@Html.DisplayNameFor(m => m.DocRef4)</th>
+                    <th>@Html.DisplayNameFor(m => m.DocRef5)</th>
+                    <th>@Html.DisplayNameFor(m => m.FechaTransaccion)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CodCia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CompaniaVenta3)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AlmacenVenta)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TipoMovimiento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TipoDocumento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NroDocumento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CodItem2)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Proveedor)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AlmacenDestino)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DocRef1)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DocRef2)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DocRef3)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DocRef4)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DocRef5)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FechaTransaccion)</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                @Html.ActionLink("Editar", "Edit", new
+                                {
+                                    codCia = item.CodCia,
+                                    companiaVenta3 = item.CompaniaVenta3,
+                                    almacenVenta = item.AlmacenVenta,
+                                    tipoMovimiento = item.TipoMovimiento,
+                                    tipoDocumento = item.TipoDocumento,
+                                    nroDocumento = item.NroDocumento,
+                                    codItem2 = item.CodItem2
+                                }, new { @class = "btn btn-primary me-1" })
+
+                                @Html.ActionLink("Eliminar", "Delete", new
+                                {
+                                    codCia = item.CodCia,
+                                    companiaVenta3 = item.CompaniaVenta3,
+                                    almacenVenta = item.AlmacenVenta,
+                                    tipoMovimiento = item.TipoMovimiento,
+                                    tipoDocumento = item.TipoDocumento,
+                                    nroDocumento = item.NroDocumento,
+                                    codItem2 = item.CodItem2
+                                }, new { @class = "btn btn-danger" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
